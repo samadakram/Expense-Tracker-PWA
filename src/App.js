@@ -4,6 +4,7 @@ import './App.css';
 // Import Components
 import { Header } from './Components/Header';
 import { Balance } from './Components/Balance';
+import { IncomeExpenses } from './Components/IncomeExpenses';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header/>
       <div className="container">
         <Balance />
+        <IncomeExpenses />
       </div>
     </div>
   );
