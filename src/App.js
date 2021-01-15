@@ -8,6 +8,9 @@ function App() {
   return (
     <div>
       <Header/>
+      <div className="container">
+        <h5>Balance</h5>
+      </div>
     </div>
   );
 }
