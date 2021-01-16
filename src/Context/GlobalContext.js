@@ -28,7 +28,7 @@ export const GlobalProvider = ({children}) => {
         });
     }
     
-    function addTransactions (id) {
+    function addTransactions (transaction) {
         dispatch({
             type: 'ADD_TRANSACTION',
             payload: transaction
