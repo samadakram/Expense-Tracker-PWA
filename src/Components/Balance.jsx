@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {GlobalContext} from '../Context/GlobalContext';
 
 export const Balance = () => {
+
+    const {transactions} = useContext(GlobalContext);
+
     return (
         <div>
             <h4>Your Balance</h4>
