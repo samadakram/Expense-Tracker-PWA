@@ -20,7 +20,8 @@ body {
 }
 
 .container {
-  /* margin: 30px auto; */
+  margin: 2px auto;
+  padding: 0 10px;
   width: 350px;
   border: 1px solid saddlebrown;
 }
