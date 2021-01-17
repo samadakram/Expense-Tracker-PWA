@@ -20,8 +20,9 @@ body {
 }
 
 .container {
-  margin: 30px auto;
+  /* margin: 30px auto; */
   width: 350px;
+  border: 1px solid saddlebrown;
 }
 
 h1 {
@@ -89,7 +90,7 @@ input[type='number'] {
 
 .btn {
   cursor: pointer;
-  background: linear-gradient(45deg,blue,red);
+  background: linear-gradient(45deg,saddlebrown,sandybrown);
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -152,7 +153,7 @@ input[type='number'] {
 
 .header {
   text-align: center;
-  background: linear-gradient(red,blue);
+  color: linear-gradient(225deg,saddlebrown,sandybrown);
 }
 
 @media (max-width: 320px) {
