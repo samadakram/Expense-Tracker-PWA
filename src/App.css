@@ -24,6 +24,7 @@ body {
   padding: 0 10px;
   width: 350px;
   border: 1px solid saddlebrown;
+  border-radius: 10px;
 }
 
 h1 {
