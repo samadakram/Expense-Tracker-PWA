@@ -1,4 +1,4 @@
-let version = "v3";
+let version = "v1";
 
 //Cache Files
 let cacheFiles = [
@@ -6,8 +6,9 @@ let cacheFiles = [
   "/static/js/0.chunk.js",
   "/static/js/main.chunk.js",
   "/logo192.png",
+  "/favicon.ico",
   "/",
-  "/index.html",
+  "/index.html"
 ];
 
 // Install Service Woker
@@ -15,7 +16,7 @@ self.addEventListener("install", (e) => {
   self.skipWaiting();
   e.waitUntil(
     caches.open(version).then((cache) => {
-      console.log("cacheFiles", cacheFiles);
+      // console.log("cacheFiles", cacheFiles);
       return cache.addAll(cacheFiles);
     })
   );
