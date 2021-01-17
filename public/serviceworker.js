@@ -1,44 +1,51 @@
-const CACHE_NAME = "version-1";
-const urlsToCache = [ 'index.html' ];
+let version = "v3";
 
-const self = this;
+//Cache Files
+let cacheFiles = [
+  "/static/js/bundle.js",
+  "/static/js/0.chunk.js",
+  "/static/js/main.chunk.js",
+  "/logo192.png",
+  "/",
+  "/index.html",
+];
 
-// Install SW
-self.addEventListener('install', (event) => {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then((cache) => {
-                console.log('Opened cache');
-
-                return cache.addAll(urlsToCache);
-            })
-    )
+// Install Service Woker
+self.addEventListener("install", (e) => {
+  self.skipWaiting();
+  e.waitUntil(
+    caches.open(version).then((cache) => {
+      console.log("cacheFiles", cacheFiles);
+      return cache.addAll(cacheFiles);
+    })
+  );
 });
 
-// Listen for requests
-self.addEventListener('fetch', (event) => {
+// Activate Service Worker
+self.addEventListener("activate", function (e) {
+  console.log("[ServiceWorker] Activate");
+});
+
+const options = {
+  ignoreSearch: true,
+  ignoreMethod: true,
+  ignoreVary: true,
+};
+// Fetch Service Worker
+self.addEventListener("fetch", (event) => {
+  if (!navigator.onLine) {
     event.respondWith(
-        caches.match(event.request)
-            .then(() => {
-                return fetch(event.request) 
-                    .catch(() => caches.match('index.html'))
-            })
-    )
-});
-
-// Activate the SW
-self.addEventListener('activate', (event) => {
-    const cacheWhitelist = [];
-    cacheWhitelist.push(CACHE_NAME);
-
-    event.waitUntil(
-        caches.keys().then((cacheNames) => Promise.all(
-            cacheNames.map((cacheName) => {
-                if(!cacheWhitelist.includes(cacheName)) {
-                    return caches.delete(cacheName);
-                }
-            })
-        ))
-            
-    )
+      caches
+        .match(event.request, options)
+        .then((response) => {
+          if (response) {
+            // console.log(response);
+            return response || fetch.response;
+          }
+        })
+        .catch((err) => {
+          console.log("err", err);
+        })
+    );
+  }
 });
