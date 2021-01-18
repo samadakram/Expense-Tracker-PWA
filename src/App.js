@@ -9,8 +9,17 @@ import { TransactionList } from './Components/TransactionList';
 import { AddTransaction } from './Components/AddTransaction';
 
 import { GlobalProvider } from './Context/GlobalContext';
+import firebase from './firebase';
 
 function App() {
+
+  const messaging = firebase.messaging();
+  messaging.requestPermission().then( () => {
+    return messaging.getToken()
+  }).then((token)=> {
+    console.log('Token', token)
+  })
+
   return (
     <GlobalProvider>
       <div className="container">
